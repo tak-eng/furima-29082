@@ -1,24 +1,58 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column   | Type   | Options                    |
+| -------- | ------ | -------------------------- |
+| name     | string | null: false, unique :true  |
+| email    | string | null: false, unique :true  |
+| password | string | null: false                |
 
-* Ruby version
+### Association
+- has_many :comments
+- has_many :items, through: comments
+- has_one :pays
 
-* System dependencies
+## items テーブル
 
-* Configuration
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| image            | Mediumblob | null: false                    |
+| name             | string     | null: false                    |
+| text             | text       | null: false                    |
+| user_id          | references | null: false, foreign_key: true |
+| exhibiter_id     | references | null: false, foreign_key: true |
+| category         | string     | null: false                    |
+| item_condition   | string     | null: false                    |
+| shipping_costs   | string     | null: false                    |
+| shipping_address | string     | null: false                    |
+| derivery_date    | string     | null: false                    |
 
-* Database creation
+### Association
+belongs_to :users
+has_many :comments
 
-* Database initialization
+## comments テーブル
 
-* How to run the test suite
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user_id   | references | null: false, foreign_key: true |
+| item_id   | references | null: false, foreign_key: true |
+| comment   | text       | null: false                    |
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+belongs_to :users
+belongs_to :items
 
-* Deployment instructions
+## pays テーブル
 
-* ...
+| Column                 | Type       | Options                        |
+| -------                | ---------- | ------------------------------ |
+| card-number            | string     | null: false, unique :true       |
+| user_id                | references | null: false, foreign_key: true |
+| expiration-date(year)  | integer    | null: false                    |
+| expiration-date(month) | integer    | null: false                    |
+| security-cord          | intefer    | null: false                    |
+
+### Association
+belongs_to :users
