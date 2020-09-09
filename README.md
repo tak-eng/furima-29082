@@ -2,11 +2,17 @@
 
 ## users テーブル
 
-| Column   | Type   | Options                    |
-| -------- | ------ | -------------------------- |
-| name     | string | null: false, unique :true  |
-| email    | string | null: false, unique :true  |
-| password | string | null: false                |
+| Column          | Type   | Options                    |
+| --------------- | ------ | -------------------------- |
+| nickname        | string | null: false, unique :true  |
+| email           | string | null: false, unique :true  |
+| password        | string | null: false                |
+| password(Re)    | string | null: false                |
+| firstname(zen)  | string | null: false                |
+| lastname(zen)   | string | null: false                |
+| firstname(kana) | string | null: false                |
+| lastname(kana)  | string | null: false                |
+| birthday        | date   | null: false                |
 
 ### Association
 - has_many :comments
@@ -17,25 +23,25 @@
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| image            | Mediumblob | null: false                    |
 | name             | string     | null: false                    |
 | text             | text       | null: false                    |
 | user_id          | references | null: false, foreign_key: true |
 | exhibiter_id     | references | null: false, foreign_key: true |
-| category         | string     | null: false                    |
-| item_condition   | string     | null: false                    |
-| shipping_costs   | string     | null: false                    |
-| shipping_address | string     | null: false                    |
-| derivery_date    | string     | null: false                    |
+| category         | integer    | null: false                    |
+| item_condition   | integer    | null: false                    |
+| shipping_costs   | integer    | null: false                    |
+| shipping_address | integer    | null: false                    |
+| derivery_date    | integer    | null: false                    |
 
 ### Association
 belongs_to :users
 has_many :comments
+has_one :pays
 
 ## comments テーブル
 
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
+| Column    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
 | user_id   | references | null: false, foreign_key: true |
 | item_id   | references | null: false, foreign_key: true |
 | comment   | text       | null: false                    |
@@ -46,13 +52,11 @@ belongs_to :items
 
 ## pays テーブル
 
-| Column                 | Type       | Options                        |
-| -------                | ---------- | ------------------------------ |
-| card-number            | string     | null: false, unique :true       |
-| user_id                | references | null: false, foreign_key: true |
-| expiration-date(year)  | integer    | null: false                    |
-| expiration-date(month) | integer    | null: false                    |
-| security-cord          | intefer    | null: false                    |
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| user_id     | references | null: false, foreign_key: true |
+| item_id     | references | null: false, foreign_key: true |
 
 ### Association
 belongs_to :users
+belongs_to :items
