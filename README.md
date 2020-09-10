@@ -15,10 +15,10 @@
 | birthday        | date   | null: false                |
 
 ### Association
-- has_many :comment
-- has_many :item, through: comment
-- has_many :pay
-- has_one :sending_address
+- has_many :comments
+- has_many :items, through: comments
+- has_many :pays
+
 
 ## items テーブル
 
@@ -36,7 +36,7 @@
 
 ### Association
 belongs_to :user
-has_many :comment
+has_many :comments
 has_one :pay
 
 ## comments テーブル
@@ -61,6 +61,7 @@ belongs_to :item
 ### Association
 belongs_to :user
 belongs_to :item
+has_one :sending_address
 
 ## sending_address テーブル
 
