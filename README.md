@@ -1,24 +1,84 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column          | Type   | Options                    |
+| --------------- | ------ | -------------------------- |
+| nickname        | string | null: false, unique :true  |
+| email           | string | null: false, unique :true  |
+| password        | string | null: false                |
+| password_re     | string | null: false                |
+| firstname_zen   | string | null: false                |
+| lastname_zen    | string | null: false                |
+| firstname_kana  | string | null: false                |
+| lastname_kana   | string | null: false                |
+| birthday        | date   | null: false                |
 
-* Ruby version
+### Association
+- has_many :comments
+- has_many :items
+- has_many :pays
 
-* System dependencies
 
-* Configuration
+## items テーブル
 
-* Database creation
+| Column              | Type       | Options                        |
+| ------------------- | ---------- | ------------------------------ |
+| name                | string     | null: false                    |
+| text                | text       | null: false                    |
+| price               | string     | null: false                    |
+| user                | references | null: false, foreign_key: true |
+| category_id         | integer    | null: false                    |
+| item_condition_id   | integer    | null: false                    |
+| shipping_costs_id   | integer    | null: false                    |
+| shipping_address_id | integer    | null: false                    |
+| derivery_date_id    | integer    | null: false                    |
 
-* Database initialization
+### Association
+belongs_to :user
+has_many :comments
+has_one :pay
 
-* How to run the test suite
+## comments テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| user      | references | null: false, foreign_key: true |
+| item      | references | null: false, foreign_key: true |
+| comment   | text       | null: false                    |
 
-* Deployment instructions
+### Association
+belongs_to :user
+belongs_to :item
 
-* ...
+## pays テーブル
+
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| user        | references | null: false, foreign_key: true |
+| item        | references | null: false, foreign_key: true |
+
+### Association
+belongs_to :user
+belongs_to :item
+has_one :sending_address
+
+## sending_address テーブル
+
+| Column          | Type      | Options                        |
+| --------------- | --------- | ------------------------------ |
+| firstname(zen)  | string    | null: false                    |
+| lastname(zen)   | string    | null: false                    |
+| firstname(kana) | string    | null: false                    |
+| lastname(kana)  | string    | null: false                    |
+| post_code       | string    | null: false                    |
+| prefecture      | integer   | null: false                    |
+| city            | string    | null: false                    |
+| house_number    | string    | null: false                    |
+| building_name   | string    |                                |
+| phone_number    | string    | null: false                    |
+| pay             | references| null: false, foreign_key: true |
+
+### Association
+belongs_to :pay
+
