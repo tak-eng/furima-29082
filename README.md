@@ -7,17 +7,17 @@
 | nickname        | string | null: false, unique :true  |
 | email           | string | null: false, unique :true  |
 | password        | string | null: false                |
-| password(Re)    | string | null: false                |
-| firstname(zen)  | string | null: false                |
-| lastname(zen)   | string | null: false                |
-| firstname(kana) | string | null: false                |
-| lastname(kana)  | string | null: false                |
+| password_re     | string | null: false                |
+| firstname_zen   | string | null: false                |
+| lastname_zen    | string | null: false                |
+| firstname_kana  | string | null: false                |
+| lastname_kana   | string | null: false                |
 | birthday        | date   | null: false                |
 
 ### Association
 - has_many :comment
 - has_many :item, through: comment
-- has_one :pay
+- has_many :pay
 - has_one :sending_address
 
 ## items テーブル
@@ -70,14 +70,14 @@ belongs_to :item
 | lastname(zen)   | string    | null: false                    |
 | firstname(kana) | string    | null: false                    |
 | lastname(kana)  | string    | null: false                    |
-| post_code       | integer   | null: false                    |
+| post_code       | string    | null: false                    |
 | prefecture      | integer   | null: false                    |
 | city            | string    | null: false                    |
 | house_number    | string    | null: false                    |
 | building_name   | string    |                                |
-| phone_number    | integer   | null: false                    |
-| user            | references| null: false, foreign_key: true |
+| phone_number    | string    | null: false                    |
+| pay             | references| null: false, foreign_key: true |
 
 ### Association
-belongs_to :user
+belongs_to :pay
 
