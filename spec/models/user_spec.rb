@@ -30,9 +30,9 @@ RSpec.describe User, type: :model do
     end
 
     it "emailに＠が含まれていなければ登録できない" do
-      @user.email = "@"
+      @user.email = "111aaa.000"
       @user.valid?
-      expect(@user.email).to include("@")
+      expect(@user.errors.full_messages).to include("Email is invalid")
     end
     
 
