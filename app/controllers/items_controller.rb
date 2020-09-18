@@ -16,6 +16,11 @@ class ItemsController < ApplicationController
       end
   end
 
+  def price
+    item = Item.find(params[:id])
+    render json: { post: item }
+  end
+
   private
 
   def item_params
