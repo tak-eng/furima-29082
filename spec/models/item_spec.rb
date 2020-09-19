@@ -35,6 +35,19 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Price can't be blank")
     end
 
+    it "価格は半角数字以外では登録できないこと" do
+      @item.price = "あｱアｱ阿ａa"
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is not included in the list")
+    end
+
+    it "価格の範囲が300~9999999の範囲出なければ登録できないこと" do
+      @item.price = "299"
+      @item.price = "10000000"
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is not included in the list")
+    end    
+
     it "ログイン中のユーザーではないと登録できないこと" do
       @item.user = nil
       @item.valid?
