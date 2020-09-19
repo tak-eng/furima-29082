@@ -2,6 +2,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
+  has_many :comments
+  has_many :items
+  has_many :pays
+  
+  
   validates :nickname, presence: true
   validates :password, presence: true, length: { minimum: 6 }
   validates :birthday, presence: true
