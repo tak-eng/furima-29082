@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :price
+  
  
   def index
+    @items = Item.all.order("created_at DESC")
   end
 
   def new
@@ -20,11 +21,6 @@ class ItemsController < ApplicationController
   end
 
   private
-
-  def price
-    @item = Item.find(params[:id])
-    render json: { post: item }
-  end
 
   def item_params
     params.require(:item).permit(:name, :text, :image, :price, :category_id, :item_condition_id, :shipping_costs_id, :shipping_address_id, :delivery_date_id).merge(user_id: current_user.id)
