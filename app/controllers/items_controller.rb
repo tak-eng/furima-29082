@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   
  
   def index
+    @items = Item.all.order("created_at DESC")
   end
 
   def new
@@ -17,11 +18,6 @@ class ItemsController < ApplicationController
       else
         render "new"
       end
-  end
-
-  def price
-    @item = Item.find(params[:id])
-    render json: { post: item }
   end
 
   private
