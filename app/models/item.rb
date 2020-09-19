@@ -20,8 +20,8 @@ class Item < ApplicationRecord
     validates :shipping_costs_id
     validates :shipping_address_id
     validates :delivery_date_id
+    validates :price, format: { with: /\A[0-9]+\z/, messages:"半角数字のみを使ってください"}, between: 300, 9999999
   end
-  validates :price, presence: true, format: { with: /\A[0-9]+\z/, messages:"半角数字のみを使ってください"}
 
   #ジャンルの選択が「--」の時は保存できないようにする
   validates :category_id, :item_condition_id, :shipping_costs_id, :shipping_address_id, :delivery_date_id, numericality: { other_than: 0 } 
