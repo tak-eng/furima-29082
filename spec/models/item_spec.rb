@@ -55,33 +55,33 @@ RSpec.describe Item, type: :model do
     end
 
     it "カテゴリーが選択されていないと登録できないこと" do
-      @item.category_id = nil
+      @item.category_id = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include("Category can't be blank", "Category is not a number")
+      expect(@item.errors.full_messages).to include("Category must be other than 0")
     end
 
     it "商品状態が選択されていないと登録できないこと" do
-      @item.item_condition_id = nil
+      @item.item_condition_id = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include("Item condition is not a number")
+      expect(@item.errors.full_messages).to include("Item condition must be other than 0")
     end
 
     it "配送料の負担が選択されていないと登録できないこと" do
-      @item.shipping_costs_id = nil
+      @item.shipping_costs_id = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping costs is not a number")
+      expect(@item.errors.full_messages).to include("Shipping costs must be other than 0")
     end
     
     it "発送元の地域が選択されていないと登録できないこと" do
-      @item.shipping_address_id = nil
+      @item.shipping_address_id = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping address is not a number")
+      expect(@item.errors.full_messages).to include("Shipping address must be other than 0")
     end
 
     it "発送日までの日数が選択されていないと登録できないこと" do
-      @item.delivery_date_id = nil
+      @item.delivery_date_id = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include("Delivery date can't be blank", "Delivery date is not a number")
+      expect(@item.errors.full_messages).to include("Delivery date must be other than 0")
     end
   end
 end
