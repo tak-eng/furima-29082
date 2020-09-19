@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :price
+ 
   def index
   end
 
@@ -17,12 +19,12 @@ class ItemsController < ApplicationController
       end
   end
 
+  private
+
   def price
-    item = Item.find(params[:id])
+    @item = Item.find(params[:id])
     render json: { post: item }
   end
-
-  private
 
   def item_params
     params.require(:item).permit(:name, :text, :image, :price, :category_id, :item_condition_id, :shipping_costs_id, :shipping_address_id, :delivery_date_id).merge(user_id: current_user.id)
