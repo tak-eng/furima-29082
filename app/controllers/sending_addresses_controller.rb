@@ -1,0 +1,2 @@
+class SendingAddressesController < ApplicationController
+end
