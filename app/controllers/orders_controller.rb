@@ -12,12 +12,13 @@ class OrdersController < ApplicationController
       return redirect_to root_path
     else
       render 'index'
+    end
   end
 
   private
 
   def order_params
-    params.permit(:price, :token)
+    params.require(:order).permit(:price, :token, :shipping_address_id, :item_id, :post_code, :city, :house_number, :building_name, :phone_number)
   end
 
   def pay_item
