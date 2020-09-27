@@ -10,11 +10,10 @@ class OrderAddress
     validates :city
     validates :house_number
     validates :phone_number, length: { maximum: 11 }
-    validates :order
   end
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
-    SendingAddress.create(post_code: post_code, shipping_address_id: shipping_address_id, city: city, house_number: house_number, building_name: building_name, phone_number: phone_number, order: order_id)
+    SendingAddress.create!(post_code: post_code, shipping_address_id: shipping_address_id, city: city, house_number: house_number, building_name: building_name, phone_number: phone_number, order_id: order.id)
   end
 end
