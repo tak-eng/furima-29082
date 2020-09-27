@@ -6,8 +6,8 @@ class OrdersController < ApplicationController
 
   def create
     @item = Item.find(params[:item_id])
-    order = OrderAddress.new(order_params)
-    if order.save
+    @order = OrderAddress.new(order_params)
+    if @order.save
       pay_item
       return redirect_to root_path
     else
