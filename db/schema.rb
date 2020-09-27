@@ -64,11 +64,9 @@ ActiveRecord::Schema.define(version: 2020_09_23_100001) do
     t.string "house_number", null: false
     t.string "building_name"
     t.string "phone_number", null: false
-    t.bigint "item_id", null: false
     t.bigint "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["item_id"], name: "index_sending_addresses_on_item_id"
     t.index ["order_id"], name: "index_sending_addresses_on_order_id"
   end
 
@@ -94,6 +92,5 @@ ActiveRecord::Schema.define(version: 2020_09_23_100001) do
   add_foreign_key "items", "users"
   add_foreign_key "orders", "items"
   add_foreign_key "orders", "users"
-  add_foreign_key "sending_addresses", "items"
   add_foreign_key "sending_addresses", "orders"
 end
