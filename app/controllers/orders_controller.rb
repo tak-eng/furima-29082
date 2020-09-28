@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :move_to_index, only: [:index, :create]
+  before_action :direct_to_index, only: [:index, :create]
 
   def index
     @item = Item.find(params[:item_id])
@@ -35,6 +36,12 @@ class OrdersController < ApplicationController
   def move_to_index
     @item = Item.find(params[:item_id])
     if @item.user_id == current_user.id
+      redirect_to root_path
+    end
+  end
+
+  def direct_to_index
+    if request.referrer == nil
       redirect_to root_path
     end
   end
