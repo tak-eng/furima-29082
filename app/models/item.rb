@@ -24,6 +24,5 @@ class Item < ApplicationRecord
     validates :price, inclusion: { in: 300..9999999 }
   end
 
-  #ジャンルの選択が「--」の時は保存できないようにする
   validates :category_id, :item_condition_id, :shipping_cost_id, :shipping_address_id, :delivery_date_id, numericality: { other_than: 0 } 
 end
