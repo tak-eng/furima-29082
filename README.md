@@ -19,7 +19,6 @@
 - has_many :items
 - has_many :pays
 
-
 ## items テーブル
 
 | Column              | Type       | Options                        |
