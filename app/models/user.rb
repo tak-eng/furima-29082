@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :items
   has_many :pays
+  has_one :name
   
   
   validates :nickname, presence: true
