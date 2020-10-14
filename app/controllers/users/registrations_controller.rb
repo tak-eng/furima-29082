@@ -21,14 +21,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create_name
     @user = User.new(session["devise.regist_data"]["user"])
-    @name = Address.new(name_params)
+    @name = Name.new(name_params)
      unless @name.valid?
        render :new_name
      end
-    @user.build_address(@name.attributes)
+    @user.build_name(@name.attributes)
     @user.save
     session["devise.regist_data"]["user"].clear
-    sign_in(:user, @user)
+    sign_up(:user, @user)
+    redirect_to root_path
   end
  
   private
