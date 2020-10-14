@@ -18,6 +18,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @name = @user.build_name
     render :new_name
   end
+
+  def create_name
+    @user = User.new(session["devise.regist_data"]["user"])
+    @name = Address.new(name_params)
+     unless @name.valid?
+       render :new_name
+     end
+    @user.build_address(@name.attributes)
+    @user.save
+    session["devise.regist_data"]["user"].clear
+    sign_in(:user, @user)
+  end
+ 
+  private
+ 
+  def name_params
+    params.require(:name).permit(:firstname_zen, :lastname_zen, :firstname_kana, :lastname_kana, :birthday)
+  end
+
   # GET /resource/sign_up
   # def new
   #   super
