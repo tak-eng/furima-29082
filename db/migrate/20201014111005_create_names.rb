@@ -6,6 +6,7 @@ class CreateNames < ActiveRecord::Migration[6.0]
       t.string :firstname_kana,     null: false
       t.string :lastname_kana,      null: false
       t.date   :birthday,           null: false
+      t.references :user,         null: false, foreign_key: true
       t.timestamps
     end
   end
