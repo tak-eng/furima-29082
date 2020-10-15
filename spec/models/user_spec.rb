@@ -67,59 +67,6 @@ RSpec.describe User, type: :model do
       expect(@user).to be_valid
     end
 
-    it "firstname_zenが空では登録できないこと" do
-      @user.firstname_zen = nil
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Firstname zen can't be blank")
-    end
-
-    it "firstname_zenに全角漢字、ひらがな、カタカナが使われていなければ登録できないこと" do
-      @user.firstname_zen = "123ab"
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Firstname zen is invalid")
-    end
-   
-    it "lastname_zenが空では登録できないこと" do
-      @user.lastname_zen = nil
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Lastname zen can't be blank")
-    end
-
-    it "lastname_zenに全角漢字、ひらがな、カタカナが使われていなければ登録できないこと" do
-      @user.lastname_zen = "123ab"
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Lastname zen is invalid")
-    end
-
-    it "firstname_kanaが空では登録できないこと" do
-      @user.firstname_kana = nil
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Firstname kana can't be blank")
-    end
-
-    it "firstname_kanaに全角カタカナ意外が使われて入れば登録できること" do
-      @user.firstname_zen = "123abあ阿"
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Firstname zen is invalid")
-    end
-    
-    it "lastname_kanaが空では登録できないこと" do
-      @user.lastname_kana = nil
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Lastname kana can't be blank")
-    end
-
-    it "lastname_kanaに全角カタカナ意外が使われて入れば登録できること" do
-      @user.lastname_zen = "123abあ阿"
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Lastname zen is invalid")
-    end
-    
-    it "birthdayが空では登録できないこと" do
-      @user.birthday = nil
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Birthday can't be blank")
-    end
   end
 end
 
