@@ -17,6 +17,7 @@ class User < ApplicationRecord
     user = User.where(email: auth.info.email).first_or_initialize(
       nickname: auth.info.name,
         email: auth.info.email
+    )
   end
 
 end
