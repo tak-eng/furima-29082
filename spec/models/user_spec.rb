@@ -13,39 +13,39 @@ RSpec.describe User, type: :model do
     it "nicknameが空では登録できないこと" do
       @user.nickname = nil
       @user.valid?
-      expect(@user.errors.full_messages).to include("Nickname can't be blank")
+      expect(@user.errors.full_messages).to include("ニックネームを入力してください")
     end
 
     it "emailが空では登録できないこと" do
       @user.email = nil
       @user.valid?
-      expect(@user.errors.full_messages).to include("Email can't be blank")
+      expect(@user.errors.full_messages).to include("Eメールを入力してください")
     end
 
     it "重複したemailが存在する場合登録できないこと" do
       @user.save
       another_user = FactoryBot.build(:user, email: @user.email)
       another_user.valid?
-     expect(another_user.errors.full_messages).to include("Email has already been taken")
+     expect(another_user.errors.full_messages).to include("Eメールはすでに存在します")
     end
 
     it "emailに＠が含まれていなければ登録できない" do
       @user.email = "111aaa.000"
       @user.valid?
-      expect(@user.errors.full_messages).to include("Email is invalid")
+      expect(@user.errors.full_messages).to include("Eメールは不正な値です")
     end
     
 
     it "passwordが空では登録できないこと" do
       @user.password = nil
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password can't be blank")
+      expect(@user.errors.full_messages).to include("パスワードを入力してください")
     end
 
     it "passwordが存在してもpassword_confirmationが空では登録できないこと" do
       @user.password_confirmation = ""
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      expect(@user.errors.full_messages).to include("パスワード（確認用）とパスワードの入力が一致しません")
     end
 
     it "passwordが6文字以上であれば登録できること" do
@@ -58,7 +58,7 @@ RSpec.describe User, type: :model do
       @user.password = "12345"
       @user.password_confirmation = "12345"
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+      expect(@user.errors.full_messages).to include("パスワードは6文字以上で入力してください")
     end
 
     it "passwordは半角英数混合であれば登録できること" do
@@ -70,13 +70,3 @@ RSpec.describe User, type: :model do
   end
 end
 
-
-#  
-#   with_options format: { with: /\A[ぁ-んァ-ン一-龥]/, messages:"全角の漢字・ひらがな・カタカナのいづれかを使ってください"} do
-#     validates :firstname_zen
-#     validates :lastname_zen
-#   end
-#   with_options  format: { with: /\A[ァ-ヶー－]+\z/,  messages:"全角カタカナを使ってください"} do
-#     validates :firstname_kana
-#     validates :lastname_kana    
-#   end
