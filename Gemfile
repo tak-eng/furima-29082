@@ -77,3 +77,6 @@ group :production do
 end
 
 gem "aws-sdk-s3", require: false
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"
