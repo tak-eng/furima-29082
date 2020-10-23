@@ -8,7 +8,7 @@
     <div class='item-img-content'>  
     <div class="items">
       <% @item.images.each do |image| %>
-        <%= image_tag @item.images[0] ,class:"item-box-img" %>
+        <%= image_tag image ,class:"item-box-img" %>
       <% end %>
     </div>
 
