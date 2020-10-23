@@ -121,9 +121,6 @@
         <%= link_to item_path(item.id) do %>
           <div class='item-img-content'>
             <%= image_tag item.images[0], class: "item-img" %>
-            <%# item.images.each do |image| %>
-              <%#= image_tag image, class: "item-img" %>
-            <%# end %>
               
               <%if item.order%>
                 <div class='sold-out'>
