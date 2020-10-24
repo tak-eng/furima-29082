@@ -7,7 +7,7 @@ ja:
      item:
        name: 商品名
        text: 商品の説明
-       image: 出品画像
+       images: 出品画像
        price: 販売価格
        category_id: カテゴリー
        item_condition_id: 商品の状態
