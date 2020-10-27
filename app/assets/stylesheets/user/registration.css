@@ -162,16 +162,18 @@
   opacity: 0.8;
   border-radius: 4px;
   margin-top: 20px;
-  margin-left: 40px;
+  
   
 }
 
 .facebook {
   background-color: #3b5998;
   margin-right: 10px;
+  margin-left: 300px;
 }
 
 .google {
   background-color: #f24447;
   margin-right: 10px;
+  margin-left:40px;
 }
